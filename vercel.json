@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/ecos-api/:path*",
+      "destination": "https://ecos.bok.or.kr/api/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
