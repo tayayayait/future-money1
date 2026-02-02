@@ -1,0 +1,374 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Primary - Neon Green */
+    --primary: 140 85% 50%; /* #13ec5b */
+    --primary-foreground: 140 85% 5%;
+    --primary-50: 140 85% 97%;
+    --primary-100: 140 85% 92%;
+    --primary-200: 140 85% 82%;
+    --primary-300: 140 85% 65%;
+    --primary-400: 140 85% 50%;
+    --primary-500: 140 85% 45%;
+    --primary-600: 140 85% 35%;
+    --primary-700: 140 85% 25%;
+    --primary-800: 140 85% 15%;
+    --primary-900: 140 85% 10%;
+
+    /* Secondary - Teal (kept for compatibility, but adjusted darker) */
+    --secondary: 168 76% 42%;
+    --secondary-foreground: 0 0% 100%;
+
+    /* Background & Foreground */
+    --background: 222 47% 8%; /* Dark mode default */
+    --foreground: 210 40% 98%;
+
+    /* Card */
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+
+    /* Popover */
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+
+    /* Muted */
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    /* Accent */
+    --accent: 217 33% 17%;
+    --accent-foreground: 210 40% 98%;
+
+    /* Semantic Colors */
+    --success: 160 84% 39%;
+    --success-foreground: 0 0% 100%;
+    --success-light: 160 76% 96%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    --warning-light: 40 96% 94%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --destructive-light: 0 86% 97%;
+
+    --info: 217 91% 60%;
+    --info-foreground: 0 0% 100%;
+    --info-light: 214 100% 97%;
+
+    /* Scenario Colors */
+    --scenario-current: 215 16% 47%;
+    --scenario-current-foreground: 0 0% 100%;
+    --scenario-a: 262 83% 58%;
+    --scenario-a-foreground: 0 0% 100%;
+    --scenario-b: 326 78% 60%;
+    --scenario-b-foreground: 0 0% 100%;
+    --scenario-c: 199 89% 48%;
+    --scenario-c-foreground: 0 0% 100%;
+
+    /* Categories */
+    --category-food: 24 95% 53%;
+    --category-transport: 217 91% 60%;
+    --category-shopping: 326 78% 60%;
+    --category-entertainment: 262 83% 58%;
+    --category-health: 160 84% 39%;
+    --category-education: 168 76% 42%;
+    --category-housing: 215 16% 47%;
+    --category-utilities: 38 92% 50%;
+    --category-savings: 239 84% 67%;
+    --category-income: 160 84% 39%;
+    --category-investment: 262 83% 58%;
+    --category-other: 215 16% 47%;
+
+    /* Border & Input */
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 140 85% 50%;
+
+    --radius: 0.75rem;
+
+    /* Sidebar */
+    --sidebar-background: 240 6% 10%;
+    --sidebar-foreground: 240 5% 96%;
+    --sidebar-primary: 140 85% 50%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 5% 96%;
+    --sidebar-accent-foreground: 240 6% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217 91% 60%;
+
+    /* Chart Colors */
+    --chart-1: 140 85% 50%;
+    --chart-2: 168 76% 42%;
+    --chart-3: 38 92% 50%;
+    --chart-4: 326 78% 60%;
+    --chart-5: 262 83% 58%;
+
+    /* Glass Effect */
+    --glass-background: 222 47% 11% / 0.8;
+    --glass-border: 0 0% 100% / 0.1;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --shadow-md:
+      0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg:
+      0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl:
+      0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  }
+
+  .dark {
+    /* Primary - Neon Green */
+    --primary: 140 85% 50%; /* #13ec5b */
+    --primary-foreground: 140 85% 5%;
+    --primary-50: 140 85% 10%;
+    --primary-100: 140 85% 15%;
+    --primary-200: 140 85% 20%;
+    --primary-300: 140 85% 30%;
+    --primary-400: 140 85% 40%;
+    --primary-500: 140 85% 50%;
+    --primary-600: 140 85% 60%;
+    --primary-700: 140 85% 70%;
+    --primary-800: 140 85% 82%;
+    --primary-900: 140 85% 94%;
+
+    /* Secondary - Teal */
+    --secondary: 168 76% 42%;
+    --secondary-foreground: 0 0% 100%;
+
+    /* Background & Foreground - Deep Black/Green from Stitch */
+    --background: 140 10% 4%; /* #0a0c0a */
+    --foreground: 210 40% 98%;
+
+    /* Card - Dark Grayish Green */
+    --card: 140 10% 10%; /* #161b17 */
+    --card-foreground: 210 40% 98%;
+
+    /* Popover */
+    --popover: 140 10% 10%;
+    --popover-foreground: 210 40% 98%;
+
+    /* Muted */
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    /* Accent */
+    --accent: 140 10% 15%;
+    --accent-foreground: 140 85% 50%; /* Primary color for accent text */
+
+    /* Semantic Colors */
+    --success: 160 84% 39%;
+    --success-foreground: 0 0% 100%;
+    --success-light: 160 84% 10%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    --warning-light: 38 92% 10%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --destructive-light: 0 72% 10%;
+
+    --info: 217 91% 60%;
+    --info-foreground: 0 0% 100%;
+    --info-light: 217 91% 10%;
+
+    /* Border & Input */
+    --border: 140 10% 20%;
+    --input: 140 10% 20%;
+    --ring: 140 85% 50%;
+
+    /* Sidebar */
+    --sidebar-background: 140 10% 6%;
+    --sidebar-foreground: 240 5% 96%;
+    --sidebar-primary: 140 85% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 140 10% 15%;
+    --sidebar-accent-foreground: 140 85% 50%;
+    --sidebar-border: 140 10% 20%;
+    --sidebar-ring: 217 91% 60%;
+
+    /* Glass Effect */
+    --glass-background: 140 10% 10% / 0.8;
+    --glass-border: 255 100% 100% / 0.05;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    font-family:
+      "Pretendard Variable",
+      Pretendard,
+      -apple-system,
+      BlinkMacSystemFont,
+      system-ui,
+      Roboto,
+      "Helvetica Neue",
+      "Segoe UI",
+      "Apple SD Gothic Neo",
+      "Noto Sans KR",
+      "Malgun Gothic",
+      "Apple Color Emoji",
+      "Segoe UI Emoji",
+      "Segoe UI Symbol",
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings:
+      "ss01" on,
+      "cv01" on;
+  }
+}
+
+@layer components {
+  /* Amount Display Styles */
+  .amount-display {
+    @apply font-semibold tabular-nums text-right;
+  }
+
+  .amount-positive {
+    @apply text-success;
+  }
+
+  .amount-negative {
+    @apply text-destructive;
+  }
+
+  .amount-neutral {
+    @apply text-foreground;
+  }
+
+  /* Card Styles */
+  .card-glass {
+    @apply backdrop-blur-md border;
+    background: hsl(var(--glass-background));
+    border-color: hsl(var(--glass-border));
+  }
+
+  .card-interactive {
+    @apply transition-all duration-200 cursor-pointer;
+  }
+
+  .card-interactive:hover {
+    @apply shadow-lg -translate-y-0.5;
+  }
+
+  .card-interactive:active {
+    @apply shadow-md translate-y-0;
+  }
+
+  /* Touch Target */
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px];
+  }
+
+  /* Scenario Color Bars */
+  .scenario-bar-current {
+    background: hsl(var(--scenario-current));
+  }
+
+  .scenario-bar-a {
+    background: hsl(var(--scenario-a));
+  }
+
+  .scenario-bar-b {
+    background: hsl(var(--scenario-b));
+  }
+
+  .scenario-bar-c {
+    background: hsl(var(--scenario-c));
+  }
+
+  /* Safe Area Padding for Mobile */
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbar */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Gradient Text */
+  .text-gradient-primary {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(
+      135deg,
+      hsl(var(--primary)) 0%,
+      hsl(var(--secondary)) 100%
+    );
+  }
+
+  /* Backdrop Blur */
+  .backdrop-blur-glass {
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+  }
+
+  /* Animation Utilities */
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.2s ease-out;
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-slide-up,
+    .animate-fade-in {
+      animation: none;
+    }
+  }
+}

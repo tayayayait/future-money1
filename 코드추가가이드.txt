@@ -1,0 +1,139 @@
+// =================================================================================
+// Simulation.tsx에 추가할 코드 스니펫
+// =================================================================================
+
+// ============ 1단계: 177줄 뒤에 추가 (lifeEvents useMemo 다음) ============
+  // 맞춤형 공격적 저축 시나리오 생성
+  const handleGenerateAggressiveScenario = async () => {
+    if (allTransactions.length === 0) {
+      toast.error('거래 내역이 부족합니다', {
+        description: '최근 3개월 거래 내역이 필요합니다.',
+      });
+      return;
+    }
+
+    if (monthlyExpense <= 0) {
+      toast.error('지출 데이터가 없습니다', {
+        description: '지출 내역을 먼저 입력해주세요.',
+      });
+      return;
+    }
+
+    setIsGeneratingScenario(true);
+    
+    try {
+      // 1. 거래 내역 분석
+      const analysis = analyzeSpending(allTransactions, 3);
+      
+      if (analysis.categories.length === 0) {
+        toast.error('분석할 지출 내역이 없습니다');
+        setIsGeneratingScenario(false);
+        return;
+      }
+
+      // 2. 목표 저축 증가액 설정 (현재 지출의 20% 절감 목표)
+      const targetSavingsIncrease = monthlyExpense * 0.20;
+      
+      // 3. 카테고리별 절감 계획 생성
+      const reductions = generateCategoryReductions(analysis, targetSavingsIncrease);
+      
+      if (reductions.length === 0) {
+        toast.error('절감 가능한 항목을 찾을 수 없습니다', {
+          description: '지출 패턴을 더 다양하게 기록해보세요.',
+        });
+        setIsGeneratingScenario(false);
+        return;
+      }
+
+      // 4. 전략 설명 생성
+      const rationale = generateAnalysisSummary(analysis, reductions);
+
+      // 5. 시나리오 객체 생성
+      const scenario = generateAggressiveSavingScenario(
+        analysis,
+        reductions,
+        rationale
+      );
+
+      setCustomAggressiveScenario({
+        ...scenario,
+        analysis,
+        reductions,
+      });
+
+      // 활성 시나리오를 생성된 맞춤형 시나리오로 변경
+      setActiveScenario('aggressive-saving-custom');
+
+      toast.success('절약 계획이 생성되었습니다! 🎯', {
+        description: `월 ${Math.round((reductions.reduce((sum, r) => sum + r.reductionAmount, 0)) / 10000)}만원 절감 가능`,
+      });
+    } catch (error) {
+      console.error('시나리오 생성 실패:', error);
+      toast.error('시나리오 생성에 실패했습니다');
+    } finally {
+      setIsGeneratingScenario(false);
+    }
+  };
+
+// ============ 2단계: 560줄 (차트 Card를 닫는 </Card> 다음에 추가) ============
+        {/* 공격적 저축 시나리오 생성 버튼 */}
+        {!hasNoData && !isLoading && (
+          <Card className="bg-gradient-to-r from-primary/5 to-transparent border-primary/20">
+            <CardContent className="p-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-primary/10 rounded-full">
+                    <Target className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-sm">맞춤형 절약 계획</h3>
+                    <p className="text-xs text-muted-foreground">
+                      거래 내역을 분석하여 실행 가능한 절약 가이드를 생성합니다
+                    </p>
+                  </div>
+                </div>
+                <Button
+                  onClick={handleGenerateAggressiveScenario}
+                  disabled={isGeneratingScenario || allTransactions.length === 0}
+                  className="gap-2"
+                >
+                  {isGeneratingScenario ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      분석 중...
+                    </>
+                  ) : (
+                    <>
+                      <Target className="w-4 h-4" />
+                      절약 계획 생성
+                    </>
+                  )}
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
+// ============ 3단계: 698줄 (마지막 Card 닫는 </Card> 다음, </div> 앞에 추가) ============
+        {/* 맞춤형 공격적 저축 상세 카드 */}
+        {customAggressiveScenario && activeScenario === 'aggressive-saving-custom' && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+          >
+            <AggressiveSavingCard
+              categoryReductions={customAggressiveScenario.reductions}
+              savingsRationale={customAggressiveScenario.savingsRationale}
+              totalCurrentExpense={customAggressiveScenario.analysis.avgMonthlyExpense}
+              totalTargetExpense={
+                customAggressiveScenario.analysis.avgMonthlyExpense -
+                customAggressiveScenario.reductions.reduce((sum: number, r: any) => sum + r.reductionAmount, 0)
+              }
+            />
+            
+            <div className="mt-6">
+              <CategoryReductionChart categoryReductions={customAggressiveScenario.reductions} />
+            </div>
+          </motion.div>
+        )}
