@@ -6,9 +6,7 @@
 
 const ECOS_API_KEY = import.meta.env.VITE_ECOS_API_KEY;
 // 개발 환경에서는 프록시 사용, 프로덕션에서는 Supabase Edge Function 사용
-const ECOS_BASE_URL = import.meta.env.DEV 
-  ? '/ecos-api'  // Vite 프록시 경로
-  : 'https://ecos.bok.or.kr/api';  // 프로덕션 (나중에 Edge Function으로 변경)
+const ECOS_BASE_URL = '/ecos-api'; // Vercel 및 Vite Proxy 사용
 
 // API 키 확인
 export function isEcosConfigured(): boolean {
